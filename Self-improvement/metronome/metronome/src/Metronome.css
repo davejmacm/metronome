@@ -20,6 +20,20 @@
   font-size: 18px;
 }
 
+.light-container {
+  margin: 0 auto;
+  height: 5rem;
+}
+
+.light {
+  margin: 0 auto;
+  background-color: aqua;
+  height: 100%;
+  width: 5rem;
+  border-radius: 50%;
+  border: solid 3px rgb(116, 99, 99);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

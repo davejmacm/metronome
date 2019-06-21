@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Metronome.css'
 import click1 from './click1.wav'
 import click2 from './click2.wav'
+import { red } from 'ansi-colors'
 
 class Metronome extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Metronome extends Component {
       count: 0,
       bpm: 100,
       beatsPerMeasure: 4,
+      backgroundColor: red,
     }
     this.click1 = new Audio(click1)
     this.click2 = new Audio(click2)
@@ -58,7 +60,7 @@ class Metronome extends Component {
     } else {
       this.click1.play()
     }
-
+    console.log(count)
     this.setState(state => ({
       count: (state.count + 1) % state.beatsPerMeasure,
     }))
@@ -68,18 +70,29 @@ class Metronome extends Component {
     const { playing, bpm } = this.state
 
     return (
-      <div className="metronome">
-        <div className="bpm-slider">
-          <div>{bpm} BPM</div>
-          <input
-            type="range"
-            min="60"
-            max="240"
-            value={bpm}
-            onChange={this.handleBpmChange}
+      <div>
+        <div className="metronome">
+          <div className="bpm-slider">
+            <div>{bpm} BPM</div>
+            <input
+              type="range"
+              min="60"
+              max="240"
+              value={bpm}
+              onChange={this.handleBpmChange}
+            />
+          </div>
+          <button onClick={this.startStop}>
+            {' '}
+            {playing ? 'Stop' : 'Start'}
+          </button>
+        </div>
+        <div className="light-container">
+          <div
+            className="light"
+            style={{ backgroundColor: this.state.backgroundcolor }}
           />
         </div>
-        <button onClick={this.startStop}> {playing ? 'Stop' : 'Start'}</button>
       </div>
     )
   }
